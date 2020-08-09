@@ -1,0 +1,6 @@
+$('.calendar').fullCalendar(
+  'renderMeeting',
+  $.parseJson("<%= j render(@meeting, format: :json).html_safe %>"),
+  true
+  );
+$('.modal').modal('hide');

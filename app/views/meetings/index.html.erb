@@ -1,0 +1,89 @@
+<div id="remote_container"></div>
+<div class="container">
+
+	<%= render 'error_messages' %>
+	<div class="row">
+    
+  </div>
+	
+
+</div>
+<div class="row no-gutters">
+  <div class="col-md-1"></div>
+  <div class="col-md-8"><div class="calendar" style="margin-top:20px;"></div></div>
+  <div class="col-md-2">
+    <fieldset class="scheduler-border" id="legenda">
+        <legend class="scheduler-border">Lokacionet</legend>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="col">Ngjyra</th>
+                <th scope="col">Lokacioni</th>
+            </tr>
+
+            <tr>
+              <td><div id="circle" style="background: #cf8608"></div></td>
+              <td>Showroom</td>
+            </tr>
+            <tr>
+              <td><div id="circle" style="background: #0886cf"></div></td>
+              <td>Meeting Room</td>
+            </tr>
+            <tr>
+              <td><div id="circle" style="background: #03fca5"></div></td>
+              <td>Showroom - Marigona</td>
+            </tr>
+            <tr>
+              <td><div id="circle" style="background: #e685e1"></div></td>
+              <td>Punetoria Fushe Kosove</td>
+            </tr>
+            <tr>
+              <td><div id="circle" style="background: #FF0000"></div></td>
+              <td>Anuluar</td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <center>
+        <div class="scheduler-border">
+          <%= form_for "", url: meetings_url, method: :get  do %>
+            <%= text_field_tag "search[desc]", @desc, id: "searchTerm", placeholder: "Kerko Takime" %>
+          <% end %>
+        </div>
+      </center>
+  </div>
+</div>
+
+
+<%= form_for @meeting do |f| %>
+  <div class="modal" tabindex="-1" role="dialog" id="new_meet" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Takim i ri</h3>
+        </div>
+        <div class="modal-body">
+          <%= f.label :description, "Pershkrimi" %> <span style="color:red">*</span>
+          <%= f.text_area :description, class: 'form-control', style: "width: max-parent" %>
+          <%= f.label :start, "Fillimi" %> <span style="color:red">*</span>
+          <%= f.text_field :start, class: 'form-control', id: "start" %>
+          <%= f.label :end, "Mbarimi" %> <span style="color:red">*</span>
+          <%= f.text_field :end, class: 'form-control', id: "end" %>
+          <%= f.label :color, "Zgjedh Lokacionin" %> <span style="color:red">*</span>
+          <%= f.select "color", options_for_select([["Showroom", "#cf8608"], ["Meeting Room", "#0886cf"], ["Showroom - Marigona", "#03fca5"], ["Punetoria Fushe Kosove", "#e685e1"]]), {}, {  :class => 'form-control' }  %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto Takim", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $("#searchTerm").on('blur', function() {
+      $(this).css( {'background': '#dee2e6'});
+      $(this).closest('form').submit();
+    });
+</script>

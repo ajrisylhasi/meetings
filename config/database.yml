@@ -21,12 +21,5 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: metals-directory_production
-  pool: 5
-  port: 5432
-  username:
-  password:
-  template: template0
-  host: localhost
+  <<: *default
+  database: db/production.sqlite3

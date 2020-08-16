@@ -47,7 +47,7 @@ class MeetingsController < ApplicationController
       if @meeting.title ==  "Takim ne Showroom - Gjakove"
         @meeting.color = "#cf8608"
       elsif @meeting.title == "Takim ne Meeting Room"
-        @meeting.color = "#03fca5"
+        @meeting.color = "#0886cf"
       elsif @meeting.title == "Takim ne Punetoria Fushe Kosove"
         @meeting.color = "#e685e1"
       elsif @meeting.title == "Takim ne Showroom - Marigona"

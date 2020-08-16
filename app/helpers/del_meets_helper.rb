@@ -1,2 +1,0 @@
-module DelMeetsHelper
-end

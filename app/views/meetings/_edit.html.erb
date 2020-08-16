@@ -4,9 +4,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="exampleModalLabel">Ndrysho Takimin</h3>
-          <h5 class="modal-title" id="exampleModalLabel">U krijua ne:        <%= (@meeting.created_at + 2.hours).strftime("%Y-%m-%d %H:%M") %></h5>
+          <% if @meeting.user.nil? %>
+            <h5 class="modal-title" id="exampleModalLabel">U krijua ne:        <%= (@meeting.created_at + 2.hours).strftime("%Y-%m-%d %H:%M") %> nga <%= @meeting.department.name %></h5>
+          <% else %>
+            <h5 class="modal-title" id="exampleModalLabel">U krijua ne:        <%= (@meeting.created_at + 2.hours).strftime("%Y-%m-%d %H:%M") %> nga <%= @meeting.user.name %>, <%= @meeting.department.name %></h5>
+          <% end %>
         </div>
-        <% unless @meeting.anuluar %> 
+        <% unless @meeting.anuluar || @meeting.department != @current_dep%> 
           <div class="modal-body">
             <%= f.label :description, "Pershkrimi" %> <span style="color:red">*</span>
             <%= f.text_area :description, class: 'form-control' %>
@@ -24,18 +28,22 @@
             </div>
           </div>
         <% else %>
-          <%= f.label :description, "Pershkrimi", readonly: true %> <span style="color:red">*</span>
-          <%= f.text_area :description, class: 'form-control', readonly: true %>
-          <%= f.label :start, "Koha e fillimit" %> <span style="color:red">*</span>
-          <%= f.text_field :start, class: 'form-control', id: "start", readonly: true %>
-          <%= f.label :end, "Koha e perfundimit" %> <span style="color:red">*</span>
-          <%= f.text_field :end, class: 'form-control', id: "end", readonly: true %>
-          <%= f.label :color, "Zgjedh Lokacionin" %> <span style="color:red">*</span>
-          <%= f.select "color", options_for_select([["Showroom", "#cf8608"], ["Meeting Room", "#0886cf"], ["Showroom - Marigona", "#03fca5"], ["Punetoria Fushe Kosove", "#e685e1"]]), {}, { :class => 'form-control', readonly: true } %>
-          <div class="modal-footer">
-            <%= link_to @meeting, method: :delete, data: {confirm: "A jeni te sigurt"}, remote: true do %>
-              <button type="button" class="btn btn-success">Aktivizo Takimin</button>
-            <% end %>
+          <div class="modal-body">
+            <%= f.label :description, "Pershkrimi", readonly: true %> <span style="color:red">*</span>
+            <%= f.text_area :description, class: 'form-control', readonly: true %>
+            <%= f.label :start, "Koha e fillimit" %> <span style="color:red">*</span>
+            <%= f.text_field :start, class: 'form-control', id: "start", readonly: true %>
+            <%= f.label :end, "Koha e perfundimit" %> <span style="color:red">*</span>
+            <%= f.text_field :end, class: 'form-control', id: "end", readonly: true %>
+            <%= f.label :color, "Zgjedh Lokacionin" %> <span style="color:red">*</span>
+            <%= f.select "color", options_for_select([["Showroom", "#cf8608"], ["Meeting Room", "#0886cf"], ["Showroom - Marigona", "#03fca5"], ["Punetoria Fushe Kosove", "#e685e1"]]), {}, { :class => 'form-control', readonly: true } %>
+            <div class="modal-footer">
+              <% if @meeting.department == @current_dep %>
+                <%= link_to @meeting, method: :delete, data: {confirm: "A jeni te sigurt"}, remote: true do %>
+                  <button type="button" class="btn btn-success">Aktivizo Takimin</button>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         <% end %>
         

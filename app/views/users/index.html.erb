@@ -1,0 +1,137 @@
+<div class="container" style="width:35%">
+	<%= render 'layouts/error_messages' %>
+	<ul class="nav nav-tabs">
+    <li class="active" id="us"><a onclick="switchUs()">Perdoruesit</a></li>
+    <li class="" id="dep"><a onclick="switchDep()">Departamentet</a></li>
+    <li><%= link_to logout_path, method: :delete do %>
+		      <span class="glyphicon glyphicon-lock" style="color: black; font-size: 20px"></span><% end %></li>
+  </ul>
+  <div class="" id="usTab">
+	  <table class="table" >
+		  <thead>
+		    <tr>
+		      <th scope="col"><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; padding: 0px; background: none; color: green;font-size: 21px">&#43;</button></th>
+		      <th scope="col">Emri</th>
+		      <th scope="col">Departamenti</th>
+		      <th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @users.each do |a| %>
+			    <tr>
+			    	<% if @current_user == a %>
+			      	<th scope="row"><span class="glyphicon glyphicon-hand-right" style="color: green"></span></th><% @i += 1 %>
+			      <% else %>
+			      	<th scope="row"><%= @i += 1 %></th>
+			      <% end %>
+			      <td><%= a.name %></td>
+			      <td><%= a.department.name %></td>
+			      <td><%= link_to a, method: :delete do %>
+		      <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %></td>
+			    </tr>
+		  	<% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div class="notActiveTab" id="depTab">
+	  <table class="table" >
+		  <thead>
+		    <tr>
+		      <th scope="col"><button type="button" data-toggle="modal" data-target="#exampleModal2" style="border: 0px; padding: 0px; background: none; color: green;font-size: 21px">&#43;</button></th>
+		      <th scope="col">Departamenti</th>
+		      <th scope="col">Number of Users</th>
+
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @deps.each do |a| %>
+			    <tr>
+			    	<% if @current_dep == a %>
+			      	<th scope="row"><span class="glyphicon glyphicon-hand-right" style="color: green"></span></th><% @e += 1 %>
+			      <% else %>
+			      	<th scope="row"><%= @e += 1 %></th>
+			      <% end %>
+			      <td><%= a.name %></td>
+			      <td><%= a.users.count %></td>
+			      <td><%= link_to a, method: :delete do %>
+		      <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %></td>
+			    </tr>
+		  	<% end %>
+		  </tbody>
+		</table>
+	</div>
+	<center>
+		<div>
+			<%= link_to "Takimet", meetings_path, class: "btn btn-primary" %>
+		</div>
+	</center>
+</div>
+<%= form_for(@user)do |f|%>
+  <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong>Shto Perdorues të ri</strong></h4>
+        </div>
+        <div class="modal-body">
+						<%= f.label :name, "Emri" %>
+						<%= f.text_field :name, class: 'form-control' %>
+						<%= f.label :email %>
+						<%= f.text_field :email, class: 'form-control' %>
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.label :password_confirmation, "Perseri Password" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= form_for(@dep)do |f|%>
+  <div class="modal" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel"><strong>Shto Departament të ri</strong></h4>
+        </div>
+        <div class="modal-body">
+						<%= f.label :name, "Emri" %>
+						<%= f.text_field :name, class: 'form-control' %>
+						<%= f.label :email %>
+						<%= f.text_field :email, class: 'form-control' %>
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.label :password_confirmation, "Perseri Password" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Mbylle</button>
+          <%= f.submit "Shto", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<style>
+	.notActiveTab {
+		display: none;
+	}
+</style>
+<script>
+  function switchUs() {
+    document.getElementById("us").classList.add("active");
+    document.getElementById("dep").classList.remove("active");
+    document.getElementById("depTab").classList.add("notActiveTab");
+    document.getElementById("usTab").classList.remove("notActiveTab");
+  }
+  function switchDep() {
+    document.getElementById("dep").classList.add("active");
+    document.getElementById("us").classList.remove("active");
+    document.getElementById("usTab").classList.add("notActiveTab");
+    document.getElementById("depTab").classList.remove("notActiveTab");
+  }
+</script>

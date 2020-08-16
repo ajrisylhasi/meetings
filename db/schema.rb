@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_150405) do
+ActiveRecord::Schema.define(version: 2020_08_15_153102) do
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "meetings", force: :cascade do |t|
     t.datetime "start"
@@ -21,6 +29,23 @@ ActiveRecord::Schema.define(version: 2020_08_07_150405) do
     t.string "color"
     t.text "description"
     t.boolean "anuluar"
+    t.integer "user_id"
+    t.integer "department_id"
+    t.index ["department_id"], name: "index_meetings_on_department_id"
+    t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "department_id", null: false
+    t.index ["department_id"], name: "index_users_on_department_id"
+  end
+
+  add_foreign_key "meetings", "departments"
+  add_foreign_key "meetings", "users"
+  add_foreign_key "users", "departments"
 end

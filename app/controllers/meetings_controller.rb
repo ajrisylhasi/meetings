@@ -21,6 +21,8 @@ class MeetingsController < ApplicationController
 
   def create 
   	@meeting = Meeting.new(meeting_params)
+    @meeting.department = @current_dep
+    @meeting.user = @current_user if @current_user != nil
   	if @meeting.save 
   		redirect_to meetings_path
   	else
@@ -59,15 +61,20 @@ class MeetingsController < ApplicationController
 
   def update
   	@meeting = Meeting.find(params[:id])
-  	if @meeting.update_attributes(meeting_params)
-  		redirect_to meetings_path
-  	else
-      @errors = []
-      if @meeting.errors.any?
-        @meeting.errors.full_messages.each do |msg|
-          @errors.push msg
+    if @meeting.department == @current_dep
+    	if @meeting.update_attributes(meeting_params)
+    		redirect_to meetings_path
+    	else
+        @errors = []
+        if @meeting.errors.any?
+          @meeting.errors.full_messages.each do |msg|
+            @errors.push msg
+          end
         end
+        redirect_to meetings_path(errors: @errors)
       end
+    else
+      flash[:danger] = "Takimi eshte caktuar nga nje departament tjeter."
       redirect_to meetings_path(errors: @errors)
     end
   end

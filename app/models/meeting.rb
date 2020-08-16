@@ -1,7 +1,8 @@
 class Meeting < ApplicationRecord
-
 	validates_presence_of :color, :description, :start, :end
 	validates_with Validator
+	belongs_to :department
+	belongs_to :user, optional: true
 	after_save :default
 	def default
 		if self.color == "#cf8608"

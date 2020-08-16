@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <% unless controller_name == "sessions" %>
+      <div class="header" id="myHeader">
+        <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), users_path, style: "float:left; margin: 20px 0 0 20px" %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
+
+<script>
+  window.onscroll = function() {myFunction()};
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop;
+  function myFunction() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
+</script>

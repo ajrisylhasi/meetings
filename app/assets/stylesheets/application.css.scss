@@ -18,6 +18,15 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.header {
+    height: 50px;
+ }
+ .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
 fieldset.scheduler-border {
     border: 1px groove #ddd !important;
     padding: 0 1.4em 0 1.4em !important;
@@ -55,5 +64,9 @@ fieldset.scheduler-border {
   #searchTerm {
     padding: 0 1.4em 0 1.4em !important;
     margin: 10px 0 1.5em 25px !important;
-    width:205px
+    width:205px;
+  }
+  #clearForm {
+    display: inline;
+    cursor: pointer;
   }

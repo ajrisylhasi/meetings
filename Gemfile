@@ -15,6 +15,11 @@ gem "bootstrap-sass", "3.4.1"
 gem 'sass-rails', '>= 6'
 gem 'sprockets', '~> 4'
 
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+
 
 gem 'coffee-rails', '~> 4.2'
 
@@ -60,6 +65,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do
+  gem 'pg', '0.20.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

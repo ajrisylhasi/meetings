@@ -10,7 +10,7 @@ module SessionsHelper
   def current_user
     if session[:department_id].nil?
       @current_user ||= User.find_by(id: session[:user_id])
-      @current_dep ||= Department.find(@current_user.department.id)
+      @current_dep ||= Department.find(@current_user.department.id) if !(@current_user.nil?)
     else
       @current_dep ||= Department.find_by(id: session[:department_id])
     end

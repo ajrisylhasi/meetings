@@ -60,6 +60,8 @@ fieldset.scheduler-border {
   		#legend {
   			display: none;
   		}
+      body {
+        overflow-y: hidden}
 	}
   #searchTerm {
     padding: 0 1.4em 0 1.4em !important;

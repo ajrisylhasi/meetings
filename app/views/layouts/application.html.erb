@@ -13,21 +13,31 @@
     <% unless controller_name == "sessions" %>
       <% if controller_name == "users" %>
         <% if action_name == "index" %>
-          <div class="header" id="myHeader">
+          <div class="header" id="myHeader" style="height:100%">
             <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), meetings_path, style: "float:left; margin: 20px 0 0 20px" %>
           </div>
         <% else %>
-          <div class="header" id="myHeader">
+          <div class="header" id="myHeader" style="height:100%">
             <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), users_path, style: "float:left; margin: 20px 0 0 20px" %>
           </div>
         <% end %>
+        <div style="margin: 50px">
+          <%= yield %>
+        </div>
       <% elsif controller_name == "meetings" %>
-        <div class="header" id="myHeader">
-          <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), users_path, style: "float:left; margin: 20px 0 0 20px" %>
+        
+        <div class="row no-gutters">
+          <div class="col-md-1">
+            <div class="header" id="myHeader" style="height:100%">
+              <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), users_path, style: "float:left; margin: 20px 0 0 20px" %>
+            </div>
+          </div>
+          <%= yield %>
         </div>
       <% end %>
     <% end %>
-    <%= yield %>
+    
+    
   </body>
 </html>
 

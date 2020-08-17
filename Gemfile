@@ -11,7 +11,7 @@ gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 
-gem "bootstrap-sass", "3.4.1"
+gem "bootstrap-sass"
 gem 'sass-rails', '>= 6'
 gem 'sprockets', '~> 4'
 

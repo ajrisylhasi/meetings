@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-	has_secure_password
 	belongs_to :department
-	before_save :default
 	has_many :meetings
-
-	def default
-	end
+	before_save { self.email = email.downcase }
+    validates :name, presence: true, length: { maximum: 50 }
+    validates :email, presence: true, length: { maximum: 255 }
+    has_secure_password
+    validates :password, length: { minimum: 6 }, allow_blank: true
 end

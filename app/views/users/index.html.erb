@@ -1,11 +1,17 @@
 <div class="container" style="width:35%">
-	<%= render 'layouts/error_messages' %>
+	<% if !(params[:errors].nil?) %>
+      <ul class="alert alert-danger"><a class="close" data-dismiss="alert">&#215;</a>
+        <% params[:errors].each do |a| %>
+          <li style="margin:15px"><%= a %></li>
+        <% end %>
+      </ul>
+    <% end %> 
 	<ul class="nav nav-tabs">
-    <li class="active" id="us"><a onclick="switchUs()">Perdoruesit</a></li>
-    <li class="" id="dep"><a onclick="switchDep()">Departamentet</a></li>
-    <li><%= link_to logout_path, method: :delete do %>
-		      <span class="glyphicon glyphicon-lock" style="color: black; font-size: 20px"></span><% end %></li>
-  </ul>
+	    <li class="active" id="us"><a onclick="switchUs()">Perdoruesit</a></li>
+	    <li class="" id="dep"><a onclick="switchDep()">Departamentet</a></li>
+	    <li><%= link_to logout_path, method: :delete do %>
+			      <span class="glyphicon glyphicon-lock" style="color: black; font-size: 20px"></span><% end %></li>
+	  </ul>
   <div class="" id="usTab">
 	  <table class="table" >
 		  <thead>
@@ -13,6 +19,7 @@
 		      <th scope="col"><button type="button" data-toggle="modal" data-target="#exampleModal" style="border: 0px; padding: 0px; background: none; color: green;font-size: 21px">&#43;</button></th>
 		      <th scope="col">Emri</th>
 		      <th scope="col">Departamenti</th>
+		      <th></th>
 		      <th></th>
 		    </tr>
 		  </thead>
@@ -26,8 +33,9 @@
 			      <% end %>
 			      <td><%= a.name %></td>
 			      <td><%= a.department.name %></td>
-			      <td><%= link_to a, method: :delete do %>
-		      <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %></td>
+			      <td><% if @current_user == a || (@current_dep == Department.find_by(name: "IT") && @current_user == nil) %><%= link_to edit_user_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %><% end %></td>
+			      <td><% if (@current_dep == a.department && @current_user == nil) || (@current_dep == Department.find_by(name: "IT")  && @current_user == nil)%><%= link_to a, method: :delete do %>
+		      <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %><% end %></td>
 			    </tr>
 		  	<% end %>
 		  </tbody>
@@ -40,6 +48,8 @@
 		      <th scope="col"><button type="button" data-toggle="modal" data-target="#exampleModal2" style="border: 0px; padding: 0px; background: none; color: green;font-size: 21px">&#43;</button></th>
 		      <th scope="col">Departamenti</th>
 		      <th scope="col">Number of Users</th>
+		      <th scope="col"></th>
+		      <th scope="col"></th>
 
 		    </tr>
 		  </thead>
@@ -53,8 +63,9 @@
 			      <% end %>
 			      <td><%= a.name %></td>
 			      <td><%= a.users.count %></td>
-			      <td><%= link_to a, method: :delete do %>
-		      <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %></td>
+			      <td><% if (@current_user == nil && @current_dep == a) || (@current_dep == Department.find_by(name: "IT")  && @current_user == nil)%><%= link_to edit_department_path(a) do %> <span class="glyphicon glyphicon-pencil" style="color: black; font-size: 18px"></span><% end %><% end %></td>
+			      <td><% if @current_user == nil && @current_dep == Department.find_by(name: "IT") %><%= link_to a, method: :delete do %>
+		      <span class="glyphicon glyphicon-minus" style="color: black; font-size: 20px"></span><% end %><% end %></td>
 			    </tr>
 		  	<% end %>
 		  </tbody>
@@ -74,10 +85,10 @@
           <h4 class="modal-title" id="exampleModalLabel"><strong>Shto Perdorues të ri</strong></h4>
         </div>
         <div class="modal-body">
-						<%= f.label :name, "Emri" %>
-						<%= f.text_field :name, class: 'form-control' %>
-						<%= f.label :email %>
-						<%= f.text_field :email, class: 'form-control' %>
+			<%= f.label :name, "Emri" %>
+			<%= f.text_field :name, class: 'form-control' %>
+			<%= f.label :email %>
+			<%= f.text_field :email, class: 'form-control' %>
             <%= f.label :password %>
             <%= f.password_field :password, class: 'form-control' %>
             <%= f.label :password_confirmation, "Perseri Password" %>
@@ -99,10 +110,10 @@
           <h4 class="modal-title" id="exampleModalLabel"><strong>Shto Departament të ri</strong></h4>
         </div>
         <div class="modal-body">
-						<%= f.label :name, "Emri" %>
-						<%= f.text_field :name, class: 'form-control' %>
-						<%= f.label :email %>
-						<%= f.text_field :email, class: 'form-control' %>
+			<%= f.label :name, "Emri" %>
+			<%= f.text_field :name, class: 'form-control' %>
+			<%= f.label :email %>
+			<%= f.text_field :email, class: 'form-control' %>
             <%= f.label :password %>
             <%= f.password_field :password, class: 'form-control' %>
             <%= f.label :password_confirmation, "Perseri Password" %>

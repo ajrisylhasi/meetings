@@ -40,3 +40,4 @@ require 'capistrano/rails/collection'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.1'
+Rake::Task[:production].invoke

@@ -1,7 +1,7 @@
 <center>
   <div class="container" style="width:30%">
     <div>
-      <%= form_for(@user)do |f|%>
+      <%= form_for(@department)do |f|%>
         <% if !(params[:errors].nil?) %>
           <ul class="alert alert-danger"><a class="close" data-dismiss="alert">&#215;</a>
             <% params[:errors].each do |a| %>
@@ -14,7 +14,7 @@
           <%= f.label :name, "Emri" %>
           <%= f.text_field :name, class: 'form-control' %>
           <%= f.label :email %>
-          <%= f.email_field :email, class: 'form-control' %>
+          <%= f.email_field :email, class: 'form-control' %>  
           <%= f.label :password %>
           <%= f.password_field :password, class: 'form-control' %>
           <%= f.label :password_confirmation, "Perseri Password" %>

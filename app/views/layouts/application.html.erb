@@ -11,9 +11,21 @@
 
   <body>
     <% unless controller_name == "sessions" %>
-      <div class="header" id="myHeader">
-        <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), users_path, style: "float:left; margin: 20px 0 0 20px" %>
-      </div>
+      <% if controller_name == "users" %>
+        <% if action_name == "index" %>
+          <div class="header" id="myHeader">
+            <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), meetings_path, style: "float:left; margin: 20px 0 0 20px" %>
+          </div>
+        <% else %>
+          <div class="header" id="myHeader">
+            <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), users_path, style: "float:left; margin: 20px 0 0 20px" %>
+          </div>
+        <% end %>
+      <% elsif controller_name == "meetings" %>
+        <div class="header" id="myHeader">
+          <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), users_path, style: "float:left; margin: 20px 0 0 20px" %>
+        </div>
+      <% end %>
     <% end %>
     <%= yield %>
   </body>

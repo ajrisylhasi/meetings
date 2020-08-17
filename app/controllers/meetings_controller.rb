@@ -9,7 +9,7 @@ class MeetingsController < ApplicationController
 
   def index
     @meetings = Meeting.all
-  	@meeting ||= Meeting.new
+  	@new_meeting = Meeting.new
     @desc = params[:search][:desc] rescue ""
   	respond_to do |format|
       format.html

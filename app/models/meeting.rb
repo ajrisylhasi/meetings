@@ -15,4 +15,16 @@ class Meeting < ApplicationRecord
 			update_column(:title, "Takim ne Punetoria Fushe Kosove")
 		end
 	end
+
+	def location
+		if self.color == "#cf8608"
+			return "Showroom"
+		elsif self.color == "#0886cf"
+			return "Meeting Room"
+		elsif self.color == "#03fca5"
+			return "Showroom - Marigona"
+		elsif self.color == "#e685e1"
+			return "Punetoria Fushe Kosove"
+		end
+	end
 end

@@ -5,45 +5,45 @@
 <div class="col-md-8"><div class="calendar" style="margin-top:20px;"></div></div>
 <div class="col-md-2">
   <fieldset class="scheduler-border" id="legenda">
-      <legend class="scheduler-border">Lokacionet</legend>
-      <table class="table">
-        <tbody>
-          <tr>
-            <th scope="col">Ngjyra</th>
-              <th scope="col">Lokacioni</th>
-          </tr>
+    <legend class="scheduler-border">Lokacionet</legend>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="col">Ngjyra</th>
+            <th scope="col">Lokacioni</th>
+        </tr>
 
-          <tr>
-            <td><div id="circle" style="background: #cf8608"></div></td>
-            <td>Showroom</td>
-          </tr>
-          <tr>
-            <td><div id="circle" style="background: #0886cf"></div></td>
-            <td>Meeting Room</td>
-          </tr>
-          <tr>
-            <td><div id="circle" style="background: #03fca5"></div></td>
-            <td>Showroom - Marigona</td>
-          </tr>
-          <tr>
-            <td><div id="circle" style="background: #e685e1"></div></td>
-            <td>Punetoria Fushe Kosove</td>
-          </tr>
-          <tr>
-            <td><div id="circle" style="background: #FF0000"></div></td>
-            <td>Anuluar</td>
-          </tr>
-        </tbody>
-      </table>
-    </fieldset>
-    <center>
-      <div class="form-inline">
-        <%= form_for "", url: meetings_url, method: :get  do %>
-            <%= text_field_tag "search[desc]", @desc, id: "searchTerm", class: 'form-control', placeholder: "Filtro Takimet" %>
-            <div id="clearForm"><span style="font-size: 20px;">&times;</span></div>
-        <% end %>
-      </div>
-    </center>
+        <tr>
+          <td><div id="circle" style="background: #cf8608"></div></td>
+          <td>Showroom</td>
+        </tr>
+        <tr>
+          <td><div id="circle" style="background: #0886cf"></div></td>
+          <td>Meeting Room</td>
+        </tr>
+        <tr>
+          <td><div id="circle" style="background: #03fca5"></div></td>
+          <td>Showroom - Marigona</td>
+        </tr>
+        <tr>
+          <td><div id="circle" style="background: #e685e1"></div></td>
+          <td>Punetoria Fushe Kosove</td>
+        </tr>
+        <tr>
+          <td><div id="circle" style="background: #FF0000"></div></td>
+          <td>Anuluar</td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <center>
+    <div class="form-inline">
+      <%= form_for "", url: meetings_url, method: :get  do %>
+          <div><%= text_field_tag "search[desc]", @desc, id: "searchTerm", class: 'form-control', placeholder: "Filtro Takimet" %>
+          <div id="clearForm"><span style="font-size: 20px;">&times;</span></div></div>
+      <% end %>
+    </div>
+  </center>
 </div>
 
 

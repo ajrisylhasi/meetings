@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-  	user = User.find_by(name: params[:session][:name])
-  	user = Department.find_by(name: params[:session][:name]) if user.nil?
+  	user = User.find_by(name: params[:session][:name].strip)
+  	user = Department.find_by(name: params[:session][:name].strip) if user.nil?
     if !user
       flash[:danger] = 'Perdoruesi nuk ekziston.'
       redirect_to login_path

@@ -11,7 +11,7 @@
 
   <body>
     <% unless controller_name == "sessions" %>
-      <% if controller_name == "users" %>
+      <% if controller_name == "users" || controller_name == "departments" %>
         <% if action_name == "index" %>
           <div class="header" id="myHeader" style="height:100%">
             <%= link_to (image_tag 'Logo.png', style: "height: 50px; width: 50px; border-radius: 25px"), meetings_path, style: "float:left; margin: 20px 0 0 20px" %>

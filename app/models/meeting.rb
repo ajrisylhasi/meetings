@@ -14,6 +14,5 @@ class Meeting < ApplicationRecord
 		elsif self.color == "#e685e1"
 			update_column(:title, "Takim ne Punetoria Fushe Kosove")
 		end
-		update_column(:dep, self.department.name)
 	end
 end

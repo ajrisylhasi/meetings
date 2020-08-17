@@ -45,7 +45,7 @@
 	  <table class="table" >
 		  <thead>
 		    <tr>
-		      <th scope="col"><button type="button" data-toggle="modal" data-target="#exampleModal2" style="border: 0px; padding: 0px; background: none; color: green;font-size: 21px">&#43;</button></th>
+		      <th scope="col"><% if (@current_dep == Department.find_by(name: "IT") %><button type="button" data-toggle="modal" data-target="#exampleModal2" style="border: 0px; padding: 0px; background: none; color: green;font-size: 21px">&#43;</button><% end %></th>
 		      <th scope="col">Departamenti</th>
 		      <th scope="col">Number of Users</th>
 		      <th scope="col"></th>

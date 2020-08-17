@@ -38,8 +38,12 @@
   <center>
     <div class="form-inline">
       <%= form_for "", url: meetings_url, method: :get  do %>
-          <div><%= text_field_tag "search[desc]", @desc, id: "searchTerm", class: 'form-control', placeholder: "Filtro Takimet" %>
-          <div id="clearForm"><span style="font-size: 20px;">&times;</span></div></div>
+          <table>
+            <tr>
+              <td><%= text_field_tag "search[desc]", @desc, id: "searchTerm", class: 'form-control', placeholder: "Filtro Takimet" %></td>
+              <td style="padding: 0 0 12px 12px;"><div id="clearForm" style="padding-top: -5px"><span style="font-size: 20px;">&times;</span></div></td>
+            </tr>
+          </table>
       <% end %>
     </div>
   </center>

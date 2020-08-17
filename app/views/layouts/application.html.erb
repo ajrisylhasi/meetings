@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    
     <% unless controller_name == "sessions" %>
       <% if controller_name == "users" || controller_name == "departments" %>
         <% if action_name == "index" %>
@@ -25,7 +26,7 @@
           <%= yield %>
         </div>
       <% elsif controller_name == "meetings" %>
-        
+        <center><div><%= render 'layouts/flash' %><%= render 'error_messages' %></div></center>
         <div class="row no-gutters">
           <div class="col-md-1">
             <div class="header" id="myHeader" style="height:100%">

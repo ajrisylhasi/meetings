@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   def index
   	@i = 0
   	@e = 0
-  	@users = User.all
+    if @current_dep == Department.find_by(name: "IT")
+  	  @users = User.all
+    else
+      @users = @current_dep.users
+    end
   	@user = User.new
   	@deps = Department.all
   	@dep = Department.new

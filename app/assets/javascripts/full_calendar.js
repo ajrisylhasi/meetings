@@ -30,7 +30,7 @@ initialize_calendar = function() {
 		      if (searchTerms.length > 0){
 		        showSearchTerms = event.description.toLowerCase().indexOf(searchTerms) >= 0;
 		      }
-			
+			  
 						
 		      return showSearchTerms;					
 		    },

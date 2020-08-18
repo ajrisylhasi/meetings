@@ -16,7 +16,7 @@ class DepartmentsController < ApplicationController
   end
 
   def destroy
-    @department= Department.find(params[:id])
+    @department = Department.find(params[:id])
     @department.destroy
     redirect_to users_path
   end

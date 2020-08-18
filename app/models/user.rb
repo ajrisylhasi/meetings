@@ -6,4 +6,6 @@ class User < ApplicationRecord
     validates :email, presence: true, length: { maximum: 255 }
     has_secure_password
     validates :password, length: { minimum: 6 }, allow_blank: true
+
+    before_destroy { self.meetings.each { |m| self.meetings.delete(m)}}
 end

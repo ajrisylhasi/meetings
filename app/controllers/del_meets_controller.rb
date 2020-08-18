@@ -1,4 +1,5 @@
 class DelMeetsController < ApplicationController
+  before_action { redirect_to meetings_path if !(@current_user == nil && @current_dep == Department.find_by(name: "IT")) }
   def weirdName
 	end
 

@@ -8,9 +8,9 @@ class Validator < ActiveModel::Validator
 		end
   	gabim = false
     unless record.title.nil?
-	    meets = Meeting.all.select { |m| next if m.anuluar || m.title != record.title || m.id == record.id; m.start.day == record.start.day || m.end.day == record.start.day }
+	    meets = Meeting.all.select { |m| next if m.anuluar || m.title != record.title || m.id == record.id; m.start.day == record.start.day || m.end.day == record.end.day }
 	else
-		meets = Meeting.all.select { |m| next if m.color != record.color; m.start.day == record.start.day || m.end.day == record.start.day }
+		meets = Meeting.all.select { |m| next if m.color != record.color; m.start.day == record.start.day || m.end.day == record.end.day }
 	end
 	meets.each do |m|
 		if record.start >= m.start and record.start < m.end

@@ -52,6 +52,8 @@ class MeetingsController < ApplicationController
         @meeting.color = "#e685e1"
       elsif @meeting.title == "Takim ne Showroom - Marigona"
         @meeting.color = "#03fca5"
+      elsif @meeting.title == "Takim ne Meeting Room PR"
+        @meeting.color = "#00b300"
       end
       @meeting.description.slice!(" - I Anuluar")
     end

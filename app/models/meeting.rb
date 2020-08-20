@@ -13,6 +13,22 @@ class Meeting < ApplicationRecord
 			update_column(:title, "Takim ne Showroom - Marigona")
 		elsif self.color == "#e685e1"
 			update_column(:title, "Takim ne Punetoria Fushe Kosove")
+		elsif self.color == "#00b300"
+			update_column(:title, "Takim ne Meeting Room PR")
+		end
+	end
+
+	def color_a
+		if self.title == "Takim ne Showroom - Gjakove"
+			return "#cf8608"
+		elsif self.title == "Takim ne Meeting Room"
+			return "#0886cf"
+		elsif self.title == "Takim ne Showroom - Marigona"
+			return "#03fca5"
+		elsif self.title == "Takim ne Punetoria Fushe Kosove"
+			return "#e685e1"
+		elsif self.title == "Takim ne Meeting Room PR"
+			return "#00b300"
 		end
 	end
 end

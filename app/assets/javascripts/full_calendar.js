@@ -48,7 +48,7 @@ initialize_calendar = function() {
 					data: event_data,
 					type: 'PATCH'
 				});
-		  },
+		    },
  
 			select: function(start, end) {
 				$('#start').val(moment(start).format("YYYY-MM-DD HH:mm") )

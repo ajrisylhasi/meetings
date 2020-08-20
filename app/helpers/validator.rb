@@ -4,8 +4,8 @@ class Validator < ActiveModel::Validator
   	# 	return record.errors[:base] << "Takimi eshte caktuar nga nje departament tjeter"
   	# end
   	if record.anuluar && Meeting.find(record.id).anuluar == record.anuluar
-			return record.errors[:base] << "Takimi eshte anuluar"
-		end
+		return record.errors[:base] << "Takimi eshte anuluar"
+	end
   	gabim = false
     unless record.title.nil?
 	    meets = Meeting.all.select { |m| next if m.anuluar || m.title != record.title || m.id == record.id; m.start.day == record.start.day || m.end.day == record.end.day }

@@ -19,7 +19,7 @@
             <%= f.label :end, "Koha e perfundimit" %> <span style="color:red">*</span>
             <%= f.text_field :end, class: 'form-control', id: "end" %>
             <%= f.label :color, "Zgjedh Lokacionin" %> <span style="color:red">*</span>
-            <%= f.select "color", options_for_select([["Showroom", "#cf8608"], ["Meeting Room", "#0886cf"], ["Showroom - Marigona", "#03fca5"], ["Punetoria Fushe Kosove", "#e685e1"]], selected: @meeting.color), {}, { :class => 'form-control' } %>
+            <%= f.select "color", options_for_select([["Showroom", "#cf8608"], ["Meeting Room", "#0886cf"], ["Showroom - Marigona", "#03fca5"], ["Punetoria Fushe Kosove", "#e685e1"], ["Meeting Room PR", "#00b300"]], selected: @meeting.color), {}, { :class => 'form-control' } %>
             <div class="modal-footer">
               <%= link_to @meeting, method: :delete, data: {confirm: "A jeni te sigurt"}, remote: true do %>
                 <button type="button" class="btn btn-danger">Anulo Takimin</button>
@@ -36,7 +36,7 @@
             <%= f.label :end, "Koha e perfundimit" %> <span style="color:red">*</span>
             <%= f.text_field :end, class: 'form-control', readonly: true %>
             <%= f.label :color, "Zgjedh Lokacionin" %> <span style="color:red">*</span>
-            <%= f.select "color", options_for_select([["Showroom", "#cf8608"], ["Meeting Room", "#0886cf"], ["Showroom - Marigona", "#03fca5"], ["Punetoria Fushe Kosove", "#e685e1"]], selected: @meeting.color), {}, { :class => 'form-control', readonly: true } %>
+            <%= f.select "color", options_for_select([["Showroom", "#cf8608"], ["Meeting Room", "#0886cf"], ["Showroom - Marigona", "#03fca5"], ["Punetoria Fushe Kosove", "#e685e1"], ["Meeting Room PR", "#00b300"]], selected: @meeting.color_a), {}, { :class => 'form-control', readonly: true } %>
             <div class="modal-footer">
               <% if @meeting.department == @current_dep %>
                 <%= link_to @meeting, method: :delete, data: {confirm: "A jeni te sigurt"}, remote: true do %>
